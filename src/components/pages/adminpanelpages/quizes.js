@@ -85,9 +85,7 @@ alert('Could not be done at the moment')
             null
             }
 
-<div className="mid">
-        <Button onClick={()=>{setaddquizbtn(true)}} variant='contained' color='success' sx={{width: '200px', padding: '14px', margin: '0px auto'}}>Add a Quiz</Button>
-</div>
+
 
 {addquizbtn?
     <Box sx={{margin: '30px', display: 'flex', flexDirection: 'column'}}>
@@ -137,7 +135,9 @@ setTimeout(() => {
 <Button sx={{margin: '10px auto'}} color='success' variant="contained" onClick={()=>{setaddquizbtn(false)}}>Cancel</Button>
 </Box>
 :
-null
+<div className="mid">
+        <Button onClick={()=>{setaddquizbtn(true)}} variant='contained' color='success' sx={{width: '200px', padding: '14px', margin: '0px auto'}}>Add a Quiz</Button>
+</div>
 }
 
         </div>
