@@ -20,9 +20,7 @@ useEffect(()=>{
         setislogged(true)
     })
     .catch((error)=>{
-        if(params){
-            navigate('/')
-        }
+
     })
 
     checkrespage()
