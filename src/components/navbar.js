@@ -1,10 +1,11 @@
 import image from './logo.png'
 import { Avatar, Button, Menu, MenuItem, Tooltip } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import React, { useState } from 'react';
-import { logout } from './configs/fbase/fbasemethods';
+import React, { useEffect, useState } from 'react';
+import { checkrespage, logout } from './configs/fbase/fbasemethods';
 
 export default function Navbar(props){
+    let [checker, setchecker] = useState(false)
     let navigate = useNavigate()
 
     function log(){
@@ -23,6 +24,16 @@ export default function Navbar(props){
       setAnchorEl(null);
     };
 
+    useEffect(()=>{
+      checkrespage()
+      .then((success)=>{
+        setchecker(success.check)
+      })
+      .catch(()=>{
+        alert('Error! please reload the page')
+      })
+    },[])
+
     return(
         <>
         <div className='navbar'>
@@ -30,6 +41,12 @@ export default function Navbar(props){
         <Tooltip title="IT-Labs" placement="bottom">
             <img onClick={()=>{navigate('/')}} className='img' width='80px' src={image}/>
         </Tooltip>
+
+{checker?
+<Button onClick={()=>{navigate('/result')}} color='success' sx={{marginLeft: 'auto', marginRight: '20px', padding: '10px'}}>Check Results</Button>
+:
+null}
+
 
 {props.userlogged?
 

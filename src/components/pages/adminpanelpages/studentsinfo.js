@@ -46,7 +46,7 @@ export default function Studentsinfo(){
             </TableCell>
           <TableCell align="center">
           <Typography variant='h6' sx={{fontSize: 'medium', fontWeight: 'bolder' }}>
-            CNIC
+            Roll no
             </Typography>
             </TableCell>
           <TableCell align="center">
@@ -67,7 +67,7 @@ let age = year - data.type1.dateofbirth.slice(0,4)
 <TableCell align="center">{data.type1.firstname + ' ' + data.type1.lastname}</TableCell>
 <TableCell align="center">{data.type2.fathersname}</TableCell>
 <TableCell align="center">{data.type3.course}</TableCell>
-<TableCell align="center">{data.type1.cnic}</TableCell>
+<TableCell align="center">{data.rollno}</TableCell>
 <TableCell align="center">{age < 0 || age > 80 || age === 0?
 <>Invalid Age</>
 :

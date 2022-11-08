@@ -9,7 +9,9 @@ const database = getDatabase(app)
 let datasubmit = (alldata) =>{
     return new Promise((resolve, reject)=>{
 
-        let reference = ref(database, `registrations/${alldata.type1.firstname}`)
+        alldata.id = push(reference).key
+        alldata.rollno = alldata.id.slice(-4)
+        let reference = ref(database, `registrations/${alldata.rollno}`)
 
         set(reference, alldata)
         .then(()=>{
@@ -114,9 +116,51 @@ let sendquizes = (obj) =>{
         })
         .catch((error)=>{
             reject(error)
-        })    })
+        }) 
+       })
 }
 
+let getresults = (type) =>{
+    const reference = ref(database, `results/${type}`);
+    return new Promise((resolve, reject)=>{
+onValue(reference, (data)=>{
+    const result = data.val()
+    resolve(result)
+})
+    })
+}
 
+let getrollresults = () =>{
+    const reference = ref(database, `results/`);
+    return new Promise((resolve, reject)=>{
+onValue(reference, (data)=>{
+    const result = data.val()
+    resolve(result)
+})
+    })
+}
 
-export { datasubmit , login, checkuser, logout, getstudentsdata, getquizes, sendquizes }
+let checkrespage = () =>{
+    const reference = ref(database, `showresult/`);
+    return new Promise((resolve, reject)=>{
+onValue(reference, (data)=>{
+    const result = data.val()
+    resolve(result)
+})
+    })
+}
+
+let setrespage = (bool) =>{
+    const reference = ref(database, `showresult/check`);
+    return new Promise((resolve, reject)=>{
+set(reference, bool)
+.then((success)=>{
+    resolve(success)
+})
+.catch((error)=>{
+    reject(error)
+})
+    })
+}
+
+export { datasubmit , login, checkuser, logout, getstudentsdata, getquizes, sendquizes, getresults, getrollresults, checkrespage, setrespage }

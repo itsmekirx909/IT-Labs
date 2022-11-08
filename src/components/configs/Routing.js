@@ -7,15 +7,19 @@ import Adminlogin from "../pages/adminlogin";
 import Homepage from "../pages/homepage";
 import StudentRegister from "../pages/studreg";
 import Adminpanel from "../pages/adminpanel";
+import Quizpage from "../pages/adminpanelpages/quizpage";
+import Result from "../result";
 
 export default function Routing(){
     return(
         <Router>
 <Routes>
     <Route path="/*" element={<Homepage/>}/>
-    <Route path="adminlogin" element={<Adminlogin/>}/>
-    <Route path="studreg" element={<StudentRegister/>}/>
-    <Route path="adminpanel/*" element={<Adminpanel/>}/>
+    <Route path="/adminlogin" element={<Adminlogin/>}/>
+    <Route path="/studreg" element={<StudentRegister/>}/>
+    <Route path="/adminpanel/*" element={<Adminpanel/>}/>
+    <Route path="/quizpage" element={<Quizpage/>}/>
+    <Route path="/result" element={<Result/>}/>
 </Routes>
         </Router>
     )

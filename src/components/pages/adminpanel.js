@@ -5,13 +5,14 @@ import { Route, Routes, useLocation, useNavigate, useParams } from "react-router
 import Adminnavs from "../adminnavs"
 import { checkuser, getquizes, getstudentsdata } from "../configs/fbase/fbasemethods"
 import Navbar from "../navbar"
+import Adminresult from "./adminpanelpages/adminresult"
 import Quizes from "./adminpanelpages/quizes"
 import Studentsinfo from "./adminpanelpages/studentsinfo"
 
 export default function Adminpanel(){
     let [studentsdata, setstudentsdata] = useState()
     let [quizdata, setquizdata] = useState()
-    let pages = ['Students', 'Quizes']
+    let pages = ['Students', 'Quizes', 'Results']
     let [islogged, setislogged] = useState(true)
     let navigate = useNavigate()
     let [loader, setloader] = useState(true)
@@ -31,6 +32,8 @@ getdata()
             navigate('/adminpanel/studentsinfo',{state: {studentsdata: studentsdata}})
         }else if(e === 'Quizes'){
             navigate('/adminpanel/quizes',{state: {quizdata: quizdata}})
+        }else if(e === 'Results'){
+            navigate('/adminpanel/adminresult')
         }
     }
 
@@ -69,8 +72,9 @@ getdata()
 <Adminnavs function={nav2} pages={pages}/>
 
 <Routes>
-    <Route path="studentsinfo" element={<Studentsinfo/>}/>
-    <Route path="quizes" element={<Quizes/>}/>
+    <Route path="/studentsinfo" element={<Studentsinfo/>}/>
+    <Route path="/quizes" element={<Quizes/>}/>
+    <Route path="/adminresult" element={<Adminresult/>}/>
 </Routes>
 
 
