@@ -9,6 +9,7 @@ import StudentRegister from "../pages/studreg";
 import Adminpanel from "../pages/adminpanel";
 import Quizpage from "../pages/adminpanelpages/quizpage";
 import Result from "../result";
+import Studentsignup from "../pages/studentsignup";
 
 export default function Routing(){
     return(
@@ -20,6 +21,7 @@ export default function Routing(){
     <Route path="/adminpanel/*" element={<Adminpanel/>}/>
     <Route path="/quizpage" element={<Quizpage/>}/>
     <Route path="/result" element={<Result/>}/>
+    <Route path="/studentsignup" element={<Studentsignup/>}/>
 </Routes>
         </Router>
     )

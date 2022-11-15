@@ -47,6 +47,9 @@ let [open, setopen] = useState(false)
             fulldata.type3 = datas3
             setfulldata(fulldata)  
             if(fulldata.type3 !== undefined){
+
+            setprogress(progress+34)
+
 setloader(true)
 
 datasubmit(fulldata)
@@ -59,7 +62,7 @@ setTimeout(()=>{
 },3000)
 
 })
-.catch(()=>{
+.catch((error)=>{
 setloader(false)
     alert('Data could not be send at the moment try again in a few seconds')
 })
@@ -175,10 +178,13 @@ setnextsub('Submit')
 </Box>
 
 <Typography sx={{pointerEvents: 'none'}} variant="p" fontSize='15px' color='error'>{invalid}</Typography>
+
+
+<Button sx={{margin: '5px'}} color='success' variant='outlined' onClick={()=>{navigate('/studentsignup')}}>Already Registered</Button>
 </>
 }
-        </Box>
 
+        </Box>
 
         </div>
 
@@ -187,6 +193,8 @@ setnextsub('Submit')
         open={open}
         message="Registered successfully"
       />
+
+
       </>
     )
 }

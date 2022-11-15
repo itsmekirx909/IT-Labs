@@ -2,7 +2,7 @@ import image from './logo.png'
 import { Avatar, Button, Menu, MenuItem, Tooltip } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import React, { useEffect, useState } from 'react';
-import { checkrespage, logout } from './configs/fbase/fbasemethods';
+import { checkrespage, checkuser, checkuseroradmin, logout } from './configs/fbase/fbasemethods';
 
 export default function Navbar(props){
     let [checker, setchecker] = useState(false)
@@ -14,6 +14,8 @@ export default function Navbar(props){
         navigate('/adminlogin')
       })
     }
+
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -27,12 +29,12 @@ export default function Navbar(props){
     useEffect(()=>{
       checkrespage()
       .then((success)=>{
-        setchecker(success.check)
+        setchecker(success)
       })
       .catch(()=>{
         alert('Error! please reload the page')
       })
-    },[])
+    })
 
     return(
         <>
@@ -41,6 +43,7 @@ export default function Navbar(props){
         <Tooltip title="IT-Labs" placement="bottom">
             <img onClick={()=>{navigate('/')}} className='img' width='80px' src={image}/>
         </Tooltip>
+
 
 {checker?
 <Button onClick={()=>{navigate('/result')}} color='success' sx={{marginLeft: 'auto', marginRight: '20px', padding: '10px'}}>Check Results</Button>
@@ -67,6 +70,10 @@ color='success' sx={{marginLeft: 'auto', marginRight: '20px', cursor: 'pointer',
     'aria-labelledby': 'basic-button',
   }}
 >
+
+  {
+
+  }
   <MenuItem onClick={()=>{navigate('/adminpanel')}}>Dashboard</MenuItem>
   <MenuItem onClick={log}>Logout</MenuItem>
 </Menu>

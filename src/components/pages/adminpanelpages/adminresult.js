@@ -1,7 +1,7 @@
 import { Button, FormControlLabel, Switch, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
-import { getresults, setrespage } from "../../configs/fbase/fbasemethods";
+import { useEffect, useState } from "react";
+import { checkrespage, conrespage, getresults, setrespage } from "../../configs/fbase/fbasemethods";
 import Selecter from "../../selecter";
 
 export default function Adminresult() {
@@ -31,6 +31,16 @@ export default function Adminresult() {
         }
     }
 
+    useEffect(()=>{
+        checkrespage()
+        .then((check)=>{
+            setchecker(check)
+        })
+        .catch((error)=>{
+            alert('An error occured')
+        })
+    },[])
+
     return (
         <div className="wholepage">
 
@@ -42,11 +52,14 @@ export default function Adminresult() {
 
 <Box sx={{margin: '30px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
 
-    <FormControlLabel labelPlacement="start" color="success" control={<Switch value={false} onClick={(e)=>{
+    <FormControlLabel checked={checker} labelPlacement="start" color="success" control={<Switch value={false} onClick={(e)=>{
+    
         if(checker){
             setchecker(false)
+            conrespage(checker)
         }else{
             setchecker(true)
+            conrespage(checker)
         }
     }}/>} label="Enable Results Page" />
     
